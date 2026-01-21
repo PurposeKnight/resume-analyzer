@@ -1,17 +1,19 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+
+const analyzeRoutes = require("./routes/analyze");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/analyze", analyzeRoutes);
+
 app.get("/", (req, res) => {
-  res.send("Resume Analyzer API running");
+  res.send("Backend running");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });
